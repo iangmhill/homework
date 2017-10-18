@@ -55,6 +55,7 @@ function createMemberElement(member) {
   var smokerProperty = document.createElement('p');
   smokerProperty.innerText =
       constants.SMOKER_TITLE + (member.smoker ? 'Yes' : 'No');
+  // Build the button to allow the user to remove this member
   var removeButton = document.createElement('button');
   removeButton.innerText = constants.REMOVE_BUTTON;
   removeButton.onclick = function() {
@@ -80,8 +81,10 @@ function createWarningItem(message) {
 
 function createWarningList(items) {
   var warningDiv = document.createElement('div');
+  // Define a helpful preface for the error
   var warningPreface = document.createElement('p');
   warningPreface.innerText = constants.WARNING_PREFACE;
+  // Assemble the specific errors
   var warningList = document.createElement('ul');
   for (var i = 0; i < items.length; i++) {
     warningList.appendChild(items[i]);
@@ -111,16 +114,21 @@ function validateOrCreateWarningElement(member) {
 // Root functions --------------------------------------------------------------
 
 function addHouseholdMember(event) {
+  // Prevent a page reload
   event.preventDefault();
+  // Define the new household member
   var member = {
     key: uniqueKeyCounter,
     age: parseInt(form.age.value),
     rel: form.rel.value,
     smoker: form.smoker.checked,
   };
+  // Increment the uniqueKeyCounter to be ready for the next member
   uniqueKeyCounter += 1;
+  // Validate or create a warning to alert the user of an invalid field
   var warning = validateOrCreateWarningElement(member);
   if (warning) {
+    // Add the warning to the page or update it
     if (previousWarning) {
       form.replaceChild(warning, previousWarning);
     } else {
@@ -128,9 +136,13 @@ function addHouseholdMember(event) {
     }
     previousWarning = warning;
   } else {
+    // Add the member to the state
     householdMembers.push(member);
+    // Add the member to the DOM
     list.appendChild(createMemberElement(member));
+    // Ready the form for the next entry
     form.reset();
+    // If there was previously a warning, it can be dismissed
     if (previousWarning) {
       form.removeChild(previousWarning);
       previousWarning = null;
