@@ -1,0 +1,17 @@
+Hi Ad Hoc Engineers,
+
+I'm excited to be applying for the role of Full Stack Developer. In this repo,
+I've completed the hhbuilder and the fetch assignments. You shouldn't have to do
+anything special to run my code.
+
+Thank you!
+
+--------------------------------------------------------------------------------
+UPDATE October 26, 2017
+
+Hi Ad Hoc Engineers,
+
+Per your request for an additional submission. I've completed the slcsp
+assignment. I used Python 3 to determine the SLCSP rates, so assuming you have that installed, you can just run ```python determine_slcsp.py```.
+
+Thanks again!
